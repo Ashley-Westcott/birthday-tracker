@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  before_save :default_values
+
   has_many :followed_users, foreign_key: :follower_id, class_name: 'Friendship'
   has_many :followees, through: :followed_users
   has_many :following_users, foreign_key: :followee_id, class_name: 'Friendship'
@@ -13,9 +13,13 @@ class User < ApplicationRecord
   validates :telephone_number, presence: true
 
 
-  def default_values
-      self.img_url ||= 'https://user-images.githubusercontent.com/16608864/35882949-bbe13aa0-0bab-11e8-859c-ceda3b213818.jpeg' #=> note self.img_url = default image if self.img_url.nil?
-  end
+    def img_url=(value)
+      if value.blank?
+        write_attribute :img_url, 'https://user-images.githubusercontent.com/16608864/35882949-bbe13aa0-0bab-11e8-859c-ceda3b213818.jpeg'
+      else
+        write_attribute :img_url, value
+      end
+    end
 
   def name
     "#{first_name} #{last_name}"
