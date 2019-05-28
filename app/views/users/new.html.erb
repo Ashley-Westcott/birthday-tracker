@@ -21,7 +21,7 @@
 <%=f.text_field :email%><br>
 <br>
 <%=f.label :birthday%><br>
-<%=f.text_field :birthday%><br>
+<%=f.date_select :birthday, :order => [:month, :day, :year], :start_year => 1900, :end_year => Time.now.year%><br>
 <br>
 <%=f.label :telephone_number%><br>
 <%=f.text_field :telephone_number%><br>

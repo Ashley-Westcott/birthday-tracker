@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
+      @user = User.create(user_params)
      if @user.valid?
        redirect_to @user
      else
@@ -19,6 +19,19 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    redirect_to '/users/#{@user.id}'
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+	  @user.destroy
+	  redirect_to '/users'
   end
 
   def show
