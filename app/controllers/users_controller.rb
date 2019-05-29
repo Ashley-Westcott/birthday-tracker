@@ -39,8 +39,15 @@ class UsersController < ApplicationController
 	  redirect_to login_path
   end
 
+  def add_friend
+
+  end
+
+
   def show
-    @user = User.find(params[:id])
+   @user = User.find(params[:id])
+   @who_follows_you = @user.followers
+   @who_you_follow = @user.followees
   end
 
 private
