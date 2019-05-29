@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       @user = User.create(user_params)
      if @user.valid?
        session[:user] = @user.id
-       redirect_to user_path(@user)
+       redirect_to user_path(@user), notice: "Signup successful!"
      else
        flash[:errors] = @user.errors.full_messages
        render new_user_path
