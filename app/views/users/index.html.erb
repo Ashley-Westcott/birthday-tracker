@@ -1,4 +1,9 @@
-<h1>Users#index</h1>
+ <h1>Users#index</h1>
+ <%= form_tag(users_path) do %>
+   User <%= text_field_tag :user %>
+   <%= submit_tag 'Search' %>
+ <% end %>
+ 
 <p><% @users.each do |user| %> </p>
 <%= link_to user.name, user %>
 <% end %>

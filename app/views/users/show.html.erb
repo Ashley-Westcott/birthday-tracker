@@ -7,6 +7,8 @@
 
 <h2><img src="<%=@user.img_url%>"></h2>
 
-<h4><%= link_to "Edit Profile", "/users/#{@user.id}/edit" %> </h4>
+<% if current_user == @user %>
+<%= link_to "Edit Profile", edit_user_path(current_user)%>
+<% end %>
 
 <%= button_to "Logout", :controller=> "sessions", :action=> "destroy" %>
