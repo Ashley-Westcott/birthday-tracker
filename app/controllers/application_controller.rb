@@ -17,9 +17,4 @@ class ApplicationController < ActionController::Base
      redirect_to login_path unless logged_in?
    end
 
-   # def check_current_user_equals_user
-   
-   #
-   # end
-
   end

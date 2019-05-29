@@ -23,4 +23,20 @@ class User < ApplicationRecord
   def name
     "#{first_name} #{last_name}"
   end
+
+  def self.search(search)
+    if search
+      user = User.find_by(last_name: search)
+      if user
+        self.where(id: user.id)
+      else
+        User.all
+      end
+    else
+      User.all
+    end
+  end
+
+
+
 end

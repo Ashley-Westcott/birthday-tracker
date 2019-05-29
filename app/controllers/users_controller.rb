@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :authorized, only: [:new, :create, :destroy]
 
   def index
-    @users = User.all
+      @users = User.search(params[:search])
   end
 
   def new
@@ -22,6 +22,9 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+      if current_user == @user
+      else redirect_to users_path
+    end
   end
 
   def update
@@ -43,7 +46,7 @@ class UsersController < ApplicationController
 private
 
 def user_params
-    params.require(:user).permit(:first_name, :last_name, :birthday, :telephone_number, :img_url, :username, :email, :password)
+    params.require(:user).permit(:first_name, :last_name, :birthday, :telephone_number, :img_url, :username, :email, :password, :search)
 end
 
 end
