@@ -7,5 +7,5 @@
 <p><% @users.each do |user| %> </p>
 <h2><img src="<%=user.img_url%>"></h2>
 <%= link_to user.name, user %>
-<%= button_to "Add Friend", :controller=> "users", :action=> "add_friend" %>
+<%= button_to "Add Friend", {method: :patch, params: {user_id: user.id}} %>
 <% end %>
