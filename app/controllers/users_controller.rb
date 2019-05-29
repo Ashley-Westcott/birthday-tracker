@@ -39,10 +39,6 @@ class UsersController < ApplicationController
 	  redirect_to login_path
   end
 
-  def add_friend
-
-  end
-
 
   def show
    @user = User.find(params[:id])

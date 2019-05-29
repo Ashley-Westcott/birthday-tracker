@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   post '/sessions/:id',  to: 'sessions#destroy'
-  patch '/users',  to: 'users#add_friend'
+  post '/users',  to: 'friendship#add_friend'
   # get    '/signup',  to: 'users#new'
   # post    '/signup',  to: 'users#new'
   # delete '/logout',  to: 'sessions#destroy'
