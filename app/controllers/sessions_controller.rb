@@ -22,4 +22,9 @@ class SessionsController < ApplicationController
       redirect_to login_path
     end
   end
+
+  def destroy
+   session.delete(:user)
+   redirect_to login_path
+  end
 end

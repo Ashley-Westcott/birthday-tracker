@@ -12,10 +12,11 @@ class UsersController < ApplicationController
   def create
       @user = User.create(user_params)
      if @user.valid?
-       redirect_to @user
+       session[:user] = @user.id
+       redirect_to user_path(@user)
      else
        flash[:errors] = @user.errors.full_messages
-       redirect_to new_user_path
+       render new_user_path
      end
   end
 
@@ -26,13 +27,13 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
-    redirect_to '/users/#{@user.id}'
+    redirect_to user_path(@user)
   end
 
   def destroy
     @user = User.find(params[:id])
-	  @user.destroy
-	  redirect_to '/users'
+    @user.destroy
+	  redirect_to login_path
   end
 
   def show

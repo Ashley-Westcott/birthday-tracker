@@ -1,4 +1,4 @@
-<h1><%="Welcome to #{@user.name}'s Home Page"%></h1>
+<h1><%="Welcome to your home page, #{@user.name}"%></h1>
 
 
 <h3>Name: <%=@user.name%></h3>
@@ -8,3 +8,5 @@
 <h2><img src="<%=@user.img_url%>"></h2>
 
 <h4><%= link_to "Edit Profile", "/users/#{@user.id}/edit" %> </h4>
+
+<%= button_to "Logout", :controller=> "sessions", :action=> "destroy" %>
