@@ -12,3 +12,8 @@
 <% end %>
 
 <%= button_to "Logout", :controller=> "sessions", :action=> "destroy" %>
+
+
+<% @who_you_follow.each do |follow| %>
+<%= follow.name %>
+<% end %>

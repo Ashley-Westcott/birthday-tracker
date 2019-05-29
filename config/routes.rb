@@ -5,13 +5,13 @@ Rails.application.routes.draw do
   # get 'users/new'
   # get 'users/edit'
 
-
+  resources :frienships
   resources :sessions
   resources :users, only: [:index, :show, :create, :new, :destroy, :edit, :update]
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   post '/sessions/:id',  to: 'sessions#destroy'
-  post '/users',  to: 'friendship#add_friend'
+  post '/newfriendship',  to: 'friendships#add_friend', as: "add_new_friend"
   # get    '/signup',  to: 'users#new'
   # post    '/signup',  to: 'users#new'
   # delete '/logout',  to: 'sessions#destroy'
