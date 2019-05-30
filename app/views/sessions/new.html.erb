@@ -1,18 +1,83 @@
-<div class="container">
-<h1>Login</h1>
 
-<h4><%= flash[:notice] %></h4>
+<!-- <h1>Login</h1> -->
+
+<!-- <h4><%= flash[:notice] %></h4> -->
 
 <!-- form will POST to '/login' -->
-<%= form_tag(login_path) do %>
+<!--  <%= form_tag(login_path) do %>
  <%= label_tag :username %>
  <%= text_field_tag :username %>
 
  <%= label_tag :password %>
  <%= password_field_tag :password %>
-<%= submit_tag 'Login' %>
+ <%= submit_tag( 'Login', :class => "btn btn-primary" ) %>
 <% end %>
 
-<h4>First time here? <%= link_to "Create your account.", "/users/new" %> </h4>
+<h6>First time here? <%= link_to "Create your account.", "/users/new" %> </h6>
 
+-->
+
+<head>
+<!--Fontawesome CDN-->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+</head>
+
+
+<body>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div align="center">
+<%if flash[:notice] %>
+<div class="alert alert-dismissible alert-primary">
+<button type="button" class="close" data-dismiss="alert">&times;</button>
+<strong><%= flash[:notice] %></strong>
 </div>
+</div>
+<%end %>
+
+<div class="container">
+  <%= form_tag(login_path) do %>
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+			<div class="card-header">
+				<h3>Sign In</h3>
+			</div>
+			<div class="card-body">
+				<form>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+            <input type="text" class="form-control" placeholder="Username" name="username" required>
+
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
+						<input type="password" class="form-control" placeholder="password" name="password" required>
+					</div>
+					<div class="form-group">
+						<input type="submit" value="Login" class="btn btn-primary">
+					</div>
+				</form>
+			</div>
+			<div class="card-footer">
+				<div class="d-flex justify-content-center links">
+					Don't have an account?&nbsp;<a href="/users/new">Sign Up</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<% end %>
+<br>
+<br>
+
+</body>

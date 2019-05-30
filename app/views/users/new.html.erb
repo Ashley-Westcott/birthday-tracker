@@ -1,12 +1,17 @@
-<h1>Users#new</h1>
+<div align="center">
+<h1>Create your profile</h1>
 
 
 <% if !!flash[:errors] %>
-  <% flash[:errors].each do |e| %>
-    <p><%= e %></p>
+  <div class="alert alert-dismissible alert-primary">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <% flash[:errors].each do |e| %>
+        <strong>  <p><%= e %></p><strong>
+      <% end %>
     <% end %>
-  <% end %>
+</div>
 
+<div align="center">
 <%=form_for @user do |f|%>
 <%=f.label :username%><br>
 <%=f.text_field :username%><br>
@@ -34,3 +39,5 @@
 <br>
 <%=f.submit %>
 <%end%>
+
+</div>

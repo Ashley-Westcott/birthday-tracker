@@ -1,40 +1,48 @@
-<% if current_user == @user %>
-<h1><%= "Your Profile Page" %></h1>
-<% else %>
-<h1><%= "#{@user.name}'s User Page"%></h1>
-<%end %>
+<div class="container">
+  <div align="center">
+    <% if current_user == @user %>
+    <h1><%= "Your Profile Page" %></h1>
+    <% else %>
+    <h1><%= "#{@user.name}'s Profile"%></h1>
+    <%end %>
 
-<h4><%= flash[:notice] %></h4>
+    <h4><%= flash[:notice] %></h4>
 
-<h3>Name: <%=@user.name%></h3>
+    <h3>Name: <%=@user.name%></h3>
+    <h2><img src="<%=@user.img_url%>" width="200px" height="200px"></h2>
+    <h5>Birthday: <%=@user.birthday.to_formatted_s(:long)%></h5>
+    <h5>Phone Number: <%=@user.telephone_number%></h5>
+    </div>
+</div>
 
-<h2><img src="<%=@user.img_url%>" width="100px" height="100px"></h2>
+<div class="container">
+  <div align="center">
 
-<h5>Birthday: <%=@user.birthday.to_formatted_s(:long)%></h5>
-<h5>Phone Number: <%=@user.telephone_number%></h5>
+    <% if current_user == @user %>
+    <h5>Who you follow: </h5>
+    <% @who_you_follow.each do |follow| %>
+    <img src="<%=follow.img_url%>" width="100px" height="100px">
+    <br>
+    <%= link_to follow.name, "/users/#{follow.id}" %> -
+    <%=follow.birthday.to_formatted_s(:long)%>
 
-<% if current_user == @user %>
-<h5>Who you follow: </h5>
-<ul>
-<% @who_you_follow.each do |follow| %>
-<li><%= link_to follow.name, "/users/#{follow.id}" %></li>
-<%= link_to follow.birthday.to_formatted_s(:long), "/users/#{follow.id}" %>
-<br>
-<br>
-<%= button_to "Unfollow", unfollow_friend_path, :method => :post, params: {followee_id: follow.id} %>
-<br>
-<br>
-<% end %>
-</ul>
-<% end %>
+    <br>
+    <br>
+    <%= button_to "Unfollow", unfollow_friend_path, :method => :post, params: {followee_id: follow.id}, class: 'btn btn-primary' %>
+    <br>
+    <br>
+    <% end %>
+    <% end %>
 
-<% if current_user != @user %>
-  <%= button_to("Add Friend", add_new_friend_path, :method => :post, params: {followee_id: @user.id}) %>
-<%end%>
+    <% if current_user != @user %>
+      <%= button_to"Add Friend", add_new_friend_path, :method => :post, params: {followee_id: @user.id}, class: 'btn btn-primary' %>
+    <%end%>
 
-<% if current_user == @user %>
-<%= link_to "Edit Profile", edit_user_path(current_user)%>
-<% end %>
-<br>
-<br>
-<%= button_to "Logout", :controller=> "sessions", :action=> "destroy" %>
+    <% if current_user == @user %>
+    <%= link_to "Edit Profile", edit_user_path(current_user.id)%>
+    <% end %>
+    <br>
+    <br>
+<%= button_to "Logout", :controller=> "sessions", :action=> "destroy"%>
+  </div>
+</div>
