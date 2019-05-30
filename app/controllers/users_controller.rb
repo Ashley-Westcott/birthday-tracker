@@ -41,9 +41,11 @@ class UsersController < ApplicationController
 
 
   def show
+
    @user = User.find(params[:id])
    @who_follows_you = @user.followers
    @who_you_follow = @user.followees
+   # byebug
   end
 
 private

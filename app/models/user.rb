@@ -26,14 +26,14 @@ class User < ApplicationRecord
 
   def self.search(search)
     if search
-      user = User.find_by(last_name: search)
-      if user
-        self.where(id: user.id)
+      search_results = where('first_name LIKE ?', "%#{search}%")
+      # if search_results.count > 0
+      #   search_results
+      # else
+      #   "No results match your search"
+      #   end
       else
-        User.all
-      end
-    else
-      User.all
+      all
     end
   end
 
