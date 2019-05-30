@@ -6,14 +6,13 @@
  <% end %>
 <br>
 
-<% @users.in_groups_of(5) do |user| %>
+<% @users.in_groups_of(4) do |user| %>
   <div class="row">
     <% user.compact.each do |user| %>
-      <div class="col-md-4">
+      <div class="col-md-3">
         <h4><%= link_to user.name, user %></h4>
         <h5>Birthday: <%= user.birthday.to_formatted_s(:long) %></h5>
         <%=image_tag user.img_url, width: '300px', height: '300px'%><br>
-
         <br>
         <%= button_to("Add Friend", add_new_friend_path, :method => :post, params: {followee_id: user.id}) %>
         <br>

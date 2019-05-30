@@ -2,10 +2,18 @@ class FriendshipsController < ApplicationController
 
   def add_friend
     @user = User.find(params[:followee_id])
-    @new_freidnship = Friendship.find_or_create_by(follower_id: current_user.id, followee_id: @user.id)
-      
+    @new_friendship = Friendship.find_by(follower_id: current_user.id, followee_id: @user.id)
+    if @user.id == current_user.id
+      redirect_to current_user
+      flash[:notice] = "You already know your birthday!"
+    elsif @new_friendship == nil
+      Friendship.create(follower_id: current_user.id, followee_id: @user.id)
+      redirect_to current_user
+      flash[:notice] = "You now follow #{@user.name}"
+      else
     redirect_to current_user
-    flash[:notice] = "You are already friends"
+    flash[:notice] = "You already follow #{@user.name}"
+      end
   end
 
   def delete_friend
