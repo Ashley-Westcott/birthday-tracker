@@ -8,10 +8,12 @@ Rails.application.routes.draw do
   resources :frienships
   resources :sessions
   resources :users, only: [:index, :show, :create, :new, :destroy, :edit, :update]
+  get   '/search', to: 'users#search'
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
-  post '/sessions/:id',  to: 'sessions#destroy'
   post '/newfriendship',  to: 'friendships#add_friend', as: "add_new_friend"
+  post '/endfriendship', to: 'friendships#delete_friend', as: "unfollow_friend"
+  post '/sessions/:id',  to: 'sessions#destroy'
   # get    '/signup',  to: 'users#new'
   # post    '/signup',  to: 'users#new'
   # delete '/logout',  to: 'sessions#destroy'

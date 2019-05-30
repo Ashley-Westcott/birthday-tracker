@@ -1,12 +1,12 @@
 
- <h1>Users#index</h1>
+ <h1>BirthdayBook Users</h1>
  <%= form_tag(users_path, method: :get) do %>
   Name <%= text_field_tag :search, params[:search] %>
   <%= submit_tag 'Search', search: nil %>
   <% end %>
 
 <p><% @users.each do |user| %> </p>
-<h2><img src="<%=user.img_url%>"width="100px" height="100px"></h2>
+<h2><a href="<%user.id%>"> <img src="<%=user.img_url%>"width="100px" height="100px"></h2>
 <%= link_to user.name, user %>
 <%= button_to("Add Friend", add_new_friend_path, :method => :post, params: {followee_id: user.id}) %>
-<% end %>
+<% end %> 
