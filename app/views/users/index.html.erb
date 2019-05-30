@@ -1,9 +1,14 @@
-
+<br>
+<br>
+<div class="container">
+<div align="center">
 <h1>BirthdayBook Users</h1>
+<br>
 <%= form_tag(users_path, method: :get) do %>
- Name <%= text_field_tag :search, params[:search] %>
+ Name <%= text_field_tag :search, params[:search]%>
  <%= submit_tag 'Search', search: nil %>
  <% end %>
+<br>
 <br>
 
 <% @users.in_groups_of(4) do |user| %>
@@ -12,11 +17,12 @@
       <div class="col-md-3">
         <h4><%= link_to user.name, user %></h4>
         <h5>Birthday: <%= user.birthday.to_formatted_s(:long) %></h5>
-        <%=image_tag user.img_url, width: '300px', height: '300px'%><br>
+        <%=image_tag user.img_url, width: '250px', height: '250px'%><br>
         <br>
-        <%= button_to("Add Friend", add_new_friend_path, :method => :post, params: {followee_id: user.id}) %>
+        <%= button_to"Follow", add_new_friend_path, :method => :post, params: {followee_id: user.id}, class: 'btn btn-primary' %>
         <br>
       </div>
       <% end %>
   </div>
 <% end %>
+</div>

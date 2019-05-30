@@ -1,5 +1,9 @@
+<br>
+<br>
 <div align="center">
 <h1>Edit Your Profile</h1>
+<br>
+<br>
 
 <%=form_for @user do |f|%>
 <%=f.label :username%><br>
@@ -31,3 +35,5 @@
 <%= button_to "Delete Account", @user, :method => :delete, data: { confirm: "Are you sure you want to delete your account?" } %>
 
 </div>
+<br>
+<br>

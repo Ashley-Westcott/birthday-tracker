@@ -1,3 +1,15 @@
+<br>
+<br>
+<div align="center">
+<%if flash[:notice] %>
+<div class="alert alert-dismissible alert-info">
+<button type="button" class="close" data-dismiss="alert">&times;</button>
+<strong><%= flash[:notice] %></strong>
+</div>
+</div>
+<%end %>
+
+
 <div class="container">
   <div align="center">
     <% if current_user == @user %>
@@ -5,16 +17,21 @@
     <% else %>
     <h1><%= "#{@user.name}'s Profile"%></h1>
     <%end %>
+
     <% if flash[:birthday_notice] %>
-    <h1><%= flash[:birthday_notice] %></h1>
-    <% end %>
+    <div class="alert alert-dismissible alert-info">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong><%= flash[:birthday_notice] %></strong>
+    </div>
+    </div>
+    <%end %>
+<br>
 
-    <h4><%= flash[:notice] %></h4>
-
-    <h3>Name: <%=@user.name%></h3>
     <h2><img src="<%=@user.img_url%>" width="200px" height="200px"></h2>
-    <h5>Birthday: <%=@user.birthday.to_formatted_s(:long)%></h5>
+    <h3>Name: <%=@user.name%></h3>
     <h5>Phone Number: <%=@user.telephone_number%></h5>
+    <h5>Birthday: <%=@user.birthday.to_formatted_s(:long)%></h5>
+
     </div>
 </div>
 <br>
@@ -30,7 +47,7 @@
     <div class="row">
     <% follow.compact.each do |follow| %>
     <div class="col-md-3">
-    <img src="<%=follow.img_url%>" width="100px" height="100px"><br>
+    <img src="<%=follow.img_url%>" width="150px" height="150px"><br>
     <%= link_to follow.name, "/users/#{follow.id}" %><br>
     <%=follow.birthday.to_formatted_s(:long)%>
     <br>
