@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def create
       @user = User.create(user_params)
      if @user.valid?
-       session[:user] = @user.id
+       session[:user_id] = @user.id
        redirect_to user_path(@user), notice: "Signup successful!"
      else
        flash[:errors] = @user.errors.full_messages
@@ -41,12 +41,13 @@ class UsersController < ApplicationController
 
 
   def show
-
    @user = User.find(params[:id])
    @who_follows_you = @user.followers
    @who_you_follow = @user.followees
-   # byebug
+
   end
+
+
 
 private
 
