@@ -2,10 +2,10 @@
 
 
 <h3>Name: <%=@user.name%></h3>
-<h3>Birthday: <%=@user.birthday%></h3>
+<h3>Birthday: <%=@user.birthday.to_formatted_s(:long)%></h3>
 <h3>Phone Number: <%=@user.telephone_number%></h3>
 
-<h2><img src="<%=@user.img_url%>"></h2>
+<h2><img src="<%=@user.img_url%>" width="100px" height="100px"></h2>
 
 <% if current_user == @user %>
 <%= link_to "Edit Profile", edit_user_path(current_user)%>
