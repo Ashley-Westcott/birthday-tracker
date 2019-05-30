@@ -1,12 +1,23 @@
 
- <h1>BirthdayBook Users</h1>
- <%= form_tag(users_path, method: :get) do %>
-  Name <%= text_field_tag :search, params[:search] %>
-  <%= submit_tag 'Search', search: nil %>
-  <% end %>
+<h1>BirthdayBook Users</h1>
+<%= form_tag(users_path, method: :get) do %>
+ Name <%= text_field_tag :search, params[:search] %>
+ <%= submit_tag 'Search', search: nil %>
+ <% end %>
+<br>
 
-<p><% @users.each do |user| %> </p>
-<h2><a href="<%user.id%>"> <img src="<%=user.img_url%>"width="100px" height="100px"></h2>
-<%= link_to user.name, user %>
-<%= button_to("Add Friend", add_new_friend_path, :method => :post, params: {followee_id: user.id}) %>
-<% end %> 
+<% @users.in_groups_of(5) do |user| %>
+  <div class="row">
+    <% user.compact.each do |user| %>
+      <div class="col-md-4">
+        <h4><%= link_to user.name, user %></h4>
+        <h5>Birthday: <%= user.birthday.to_formatted_s(:long) %></h5>
+        <%=image_tag user.img_url, width: '300px', height: '300px'%><br>
+
+        <br>
+        <%= button_to("Add Friend", add_new_friend_path, :method => :post, params: {followee_id: user.id}) %>
+        <br>
+      </div>
+      <% end %>
+  </div>
+<% end %>

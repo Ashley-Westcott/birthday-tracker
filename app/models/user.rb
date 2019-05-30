@@ -25,18 +25,11 @@ class User < ApplicationRecord
   end
 
   def self.search(search)
-    if search
-      search_results = where('first_name LIKE ?', "%#{search}%")
-      # if search_results.count > 0
-      #   search_results
-      # else
-      #   "No results match your search"
-      #   end
+    search_results = where('first_name LIKE ?', "%#{search}%")
+      if search_results.count > 0
+        search_results
       else
-      all
+        all
+      end
     end
-  end
-
-
-
 end
