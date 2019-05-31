@@ -5,6 +5,9 @@
     <% else %>
     <h1><%= "#{@user.name}'s Profile"%></h1>
     <%end %>
+    <% if flash[:birthday_notice] %>
+    <h1><%= flash[:birthday_notice] %></h1>
+    <% end %>
 
     <h4><%= flash[:notice] %></h4>
 
@@ -17,6 +20,7 @@
 
 <div class="container">
   <div align="center">
+
 
     <% if current_user == @user %>
     <h5>Who you follow: </h5>

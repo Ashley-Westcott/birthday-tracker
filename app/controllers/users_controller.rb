@@ -45,7 +45,15 @@ class UsersController < ApplicationController
    @user = User.find(params[:id])
    @who_follows_you = @user.followers
    @who_you_follow = @user.followees
-   # byebug
+
+  #   birthday.month == Time.now.month &&
+    @who_you_follow.each do |user|
+
+      if user.birthday.day == Time.now.day && user.birthday.month == Time.now.month
+
+        flash[:birthday_notice] = "It is your friend #{user.name}'s birthday!"
+      end
+    end
   end
 
 private
